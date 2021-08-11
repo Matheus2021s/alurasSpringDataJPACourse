@@ -2,6 +2,10 @@ package br.com.mariah.spring.data.service;
 
 import java.util.Scanner;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import br.com.mariah.spring.data.model.Cargo;
@@ -47,7 +51,7 @@ public class CrudFuncionarioService {
 				break;
 			}
 			case 3: {
-				listar();
+				listar(scanner);
 				break;
 			}
 			case 4: {
@@ -62,8 +66,16 @@ public class CrudFuncionarioService {
 
 	}
 
-	private void listar() {
-		Iterable<Funcionario> funcionarios = funcionarioRepository.findAll();
+	private void listar(Scanner scanner) {
+		System.out.println("QUAL PAGINA DESEJA VISUALIZAR?");
+		int pagina = scanner.nextInt();
+		
+		Pageable pageable = PageRequest.of(pagina, 10, Sort.unsorted());
+		Page<Funcionario> funcionarios = funcionarioRepository.findAll(pageable);
+		System.out.println(funcionarios);
+		System.out.println("PAGINA ATUAL " + funcionarios.getNumber());
+		System.out.println("TOTAL ELEMENTOS " +funcionarios.getTotalElements());
+		
 		funcionarios.forEach(funcionario -> System.out.println(funcionario));
 	}
 
@@ -151,7 +163,7 @@ public class CrudFuncionarioService {
 
 	private void deletar(Scanner scanner) {
 		System.out.println("INFORME O ID DO FUNCIONARIO QUE DESEJA DELETAR");
-		listar();
+		listar(scanner);
 		int id = scanner.nextInt();
 		funcionarioRepository.deleteById(id);
 		System.out.println("FUNCIONARIO DELETADO COM SUCESSO!");
