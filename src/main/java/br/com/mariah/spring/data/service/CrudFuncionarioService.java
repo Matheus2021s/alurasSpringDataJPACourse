@@ -78,7 +78,7 @@ public class CrudFuncionarioService {
 		funcionario.setCpf(cpf);
 		
 		System.out.println("SALARIO:");
-		String salario = scanner.next();
+		double salario = scanner.nextDouble();
 		funcionario.setSalario(salario);
 		
 		System.out.println("CARGO CHAVE");
@@ -123,7 +123,7 @@ public class CrudFuncionarioService {
 		funcionario.setCpf(cpf);
 		
 		System.out.println("SALARIO:");
-		String salario = scanner.next();
+		double salario = scanner.nextDouble();
 		funcionario.setSalario(salario);
 		
 		System.out.println("CARGO CHAVE");

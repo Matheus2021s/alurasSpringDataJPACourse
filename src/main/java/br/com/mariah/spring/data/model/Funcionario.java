@@ -23,7 +23,7 @@ public class Funcionario {
 	private Integer id;
 	private String nome;
 	private String cpf;
-	private String salario;
+	private Double salario;
 	
 	@OneToOne
 	private Cargo cargo;
@@ -32,7 +32,7 @@ public class Funcionario {
 	private List<UnidadeDeTrabalho> unidadesDeTrabalho  = new ArrayList<UnidadeDeTrabalho>();
 	
 	@Column(name = "data_contratacao")
-	private LocalDate dataContratacao;
+	private LocalDate dataContratacao =LocalDate.now();
 
 	public Integer getId() {
 		return id;
@@ -58,11 +58,12 @@ public class Funcionario {
 		this.cpf = cpf;
 	}
 
-	public String getSalario() {
+
+	public Double getSalario() {
 		return salario;
 	}
 
-	public void setSalario(String salario) {
+	public void setSalario(Double salario) {
 		this.salario = salario;
 	}
 
