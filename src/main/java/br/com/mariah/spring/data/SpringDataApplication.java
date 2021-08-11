@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import br.com.mariah.spring.data.service.CrudCargoService;
 import br.com.mariah.spring.data.service.CrudFuncionarioService;
 import br.com.mariah.spring.data.service.CrudUnidadeDeTrabalhoService;
+import br.com.mariah.spring.data.service.RelatoriosService;
 
 @SpringBootApplication
 public class SpringDataApplication implements CommandLineRunner {
@@ -17,13 +18,18 @@ public class SpringDataApplication implements CommandLineRunner {
 	private final CrudCargoService crudCargoService;
 	private final CrudFuncionarioService crudFuncionarioService;
 	private final CrudUnidadeDeTrabalhoService crudUnidadeDeTrabalhoService;
+	private final RelatoriosService relatoriosService;
 	
-	public SpringDataApplication(CrudCargoService crudCargoService , CrudFuncionarioService crudFuncionarioService,  CrudUnidadeDeTrabalhoService crudUnidadeDeTrabalhoService) {
+	
+	
+	public SpringDataApplication(CrudCargoService crudCargoService, CrudFuncionarioService crudFuncionarioService,
+			CrudUnidadeDeTrabalhoService crudUnidadeDeTrabalhoService, RelatoriosService relatoriosService) {
 		this.crudCargoService = crudCargoService;
 		this.crudFuncionarioService = crudFuncionarioService;
 		this.crudUnidadeDeTrabalhoService = crudUnidadeDeTrabalhoService;
+		this.relatoriosService = relatoriosService;
 	}
-	
+
 	public static void main(String[] args) {
 		SpringApplication.run(SpringDataApplication.class, args);
 	}
@@ -39,7 +45,7 @@ public class SpringDataApplication implements CommandLineRunner {
 			System.out.println("1 - CARGO");
 			System.out.println("2 - UNIDADE DE TRABALHO");
 			System.out.println("3 - FUNCIONARIO ");
-			
+			System.out.println("4 - RELATORIOS");
 			int action = scanner.nextInt();
 			
 			if (action == 1) {
@@ -48,6 +54,8 @@ public class SpringDataApplication implements CommandLineRunner {
 				crudUnidadeDeTrabalhoService.inicial(scanner);	
 			}else if(action == 3){
 				crudFuncionarioService.inicial(scanner);
+			}else if(action == 4){
+				relatoriosService.inicial(scanner);
 			} else {
 				system = false;
 			}
