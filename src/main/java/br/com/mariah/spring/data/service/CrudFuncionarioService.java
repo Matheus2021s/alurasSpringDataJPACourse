@@ -169,4 +169,5 @@ public class CrudFuncionarioService {
 		funcionarioRepository.deleteById(id);
 		System.out.println("FUNCIONARIO DELETADO COM SUCESSO!");
 	}
+	
 }

@@ -8,6 +8,7 @@ import java.util.Scanner;
 import org.springframework.stereotype.Service;
 
 import br.com.mariah.spring.data.model.Funcionario;
+import br.com.mariah.spring.data.model.FuncionarioProjection;
 import br.com.mariah.spring.data.repository.FuncionarioRepository;
 
 @Service
@@ -27,6 +28,7 @@ public class RelatoriosService {
 			System.out.println("1 - BUSCAR FUNCIONARIO POR NOME ");
 			System.out.println("2 - BUSCAR FUNCIONARIO POR NOME, MAIOR SALARIO E DATA");
 			System.out.println("3 - BUSCAR FUNCIONARIO CONTRATADO A PARTIR DE DATA");
+			System.out.println("4 - BUSCAR LISTA FUNCIONARIOS RESUMIDOS ");
 
 			int action = scanner.nextInt();
 
@@ -40,6 +42,10 @@ public class RelatoriosService {
 				break;
 			case 3:
 				findDataContratacaoMaior(scanner);
+				break;
+			case 4:
+				findFuncionarioResumido();
+				break;
 			default:
 				system = false;
 				break;
@@ -77,4 +83,9 @@ public class RelatoriosService {
 		List<Funcionario> list = funcionarioRepository.findDataContratacaoMaior(dataFormatada);
 		list.forEach(item -> System.out.println(item));
 	}
+	
+	private void findFuncionarioResumido() {
+		List<FuncionarioProjection> resultadoConsulta = this.funcionarioRepository.findFuncionarioSalario();
+		resultadoConsulta.forEach( item -> System.out.println(  item.getId() + " - " + item.getNome() + " - " + item.getSalario() ) );
+	} 
 }
