@@ -9,6 +9,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import br.com.mariah.spring.data.service.CrudCargoService;
 import br.com.mariah.spring.data.service.CrudFuncionarioService;
 import br.com.mariah.spring.data.service.CrudUnidadeDeTrabalhoService;
+import br.com.mariah.spring.data.service.RelatorioFuncionarioDinamicoService;
 import br.com.mariah.spring.data.service.RelatoriosService;
 
 @SpringBootApplication
@@ -19,15 +20,17 @@ public class SpringDataApplication implements CommandLineRunner {
 	private final CrudFuncionarioService crudFuncionarioService;
 	private final CrudUnidadeDeTrabalhoService crudUnidadeDeTrabalhoService;
 	private final RelatoriosService relatoriosService;
-	
-	
-	
+	private final RelatorioFuncionarioDinamicoService relatorioFuncionarioDinamicoService;
+
+
 	public SpringDataApplication(CrudCargoService crudCargoService, CrudFuncionarioService crudFuncionarioService,
-			CrudUnidadeDeTrabalhoService crudUnidadeDeTrabalhoService, RelatoriosService relatoriosService) {
+			CrudUnidadeDeTrabalhoService crudUnidadeDeTrabalhoService, RelatoriosService relatoriosService,
+			RelatorioFuncionarioDinamicoService relatorioFuncionarioDinamicoService) {
 		this.crudCargoService = crudCargoService;
 		this.crudFuncionarioService = crudFuncionarioService;
 		this.crudUnidadeDeTrabalhoService = crudUnidadeDeTrabalhoService;
 		this.relatoriosService = relatoriosService;
+		this.relatorioFuncionarioDinamicoService = relatorioFuncionarioDinamicoService;
 	}
 
 	public static void main(String[] args) {
@@ -46,6 +49,7 @@ public class SpringDataApplication implements CommandLineRunner {
 			System.out.println("2 - UNIDADE DE TRABALHO");
 			System.out.println("3 - FUNCIONARIO ");
 			System.out.println("4 - RELATORIOS");
+			System.out.println("5 - RELATORIO DINAMICO");
 			int action = scanner.nextInt();
 			
 			if (action == 1) {
@@ -56,7 +60,9 @@ public class SpringDataApplication implements CommandLineRunner {
 				crudFuncionarioService.inicial(scanner);
 			}else if(action == 4){
 				relatoriosService.inicial(scanner);
-			} else {
+			}else if (action == 5) {
+				relatorioFuncionarioDinamicoService.inicial(scanner);
+ 			} else {
 				system = false;
 			}
 		}
